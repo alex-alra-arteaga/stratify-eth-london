@@ -1,3 +1,6 @@
+export const M_VAULT_ADDRESS =
+process.env.MANAGER_VAULT_ADDRESS ||
+"0x2244F4ADE1eCE6C216C6B119c54725dEe34801B5";
 
 export const ERC20_ABI = [
     {
