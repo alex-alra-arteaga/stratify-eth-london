@@ -22,7 +22,7 @@ contract AutomationConsumer is AutomationCompatibleInterface {
         view
         virtual
         override
-        returns (bool upkeepNeeded, bytes memory performData)
+        returns (bool upkeepNeeded, bytes memory)
     {
         upkeepNeeded = (block.timestamp - lastTimeStamp) > interval;
         // We don't use the checkData in this example. The checkData is defined when the Upkeep was registered.

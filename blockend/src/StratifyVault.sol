@@ -6,10 +6,16 @@ import {MultiAssetVault, AssetDistribution, Asset, ERC20} from "./MultiAssetVaul
 import {FunctionsConsumer, FunctionsRequest} from "./consumers/Functions.sol";
 import {AutomationConsumer} from "./consumers/Automation.sol";
 import {IUniversalRouter} from "./interfaces/IUniversalRouter.sol";
+import {IV3SwapRouter} from "@pancake/router/contracts/interfaces/IV3SwapRouter.sol";
+import {IMetaMorpho} from "@metamorpho/interfaces/IMetaMorpho.sol";
+import {IMorpho, MarketParams} from "@morpho-blue/interfaces/IMorpho.sol";
 
 struct VaultConf {
     AssetDistribution[] assets;
     IUniversalRouter uniRouter;
+    IV3SwapRouter pancakeRouter;
+    IMorpho morpho;
+    IMetaMorpho metamorpho;
     string name;
     string symbol;
 }
@@ -21,13 +27,42 @@ struct FunctionsConf {
     uint64 subscriptionId;
 }
 
-contract StratifyVault is MultiAssetVault, FunctionsConsumer, AutomationConsumer {
+enum CallType {
+    UniRouter, // Uniswap
+    MorphoBorrow,
+    MorphoRepay,
+    Pancake // Pancake
+}
+
+contract StratifyVault is
+    MultiAssetVault,
+    FunctionsConsumer,
+    AutomationConsumer
+{
     using FunctionsRequest for FunctionsRequest.Request;
 
     IUniversalRouter private uniRouter;
+    IV3SwapRouter pancakeRouter;
+    IMorpho morpho;
+    IMetaMorpho metamorpho;
 
-    constructor(VaultConf memory _vault, FunctionsConf memory _functions) MultiAssetVault(_vault.assets, _vault.name, _vault.symbol) FunctionsConsumer(_functions.source, _functions.donID, _functions.router, _functions.subscriptionId) AutomationConsumer(5 minutes) {
+    constructor(
+        VaultConf memory _vault,
+        FunctionsConf memory _functions
+    )
+        MultiAssetVault(_vault.assets, _vault.name, _vault.symbol)
+        FunctionsConsumer(
+            _functions.source,
+            _functions.donID,
+            _functions.router,
+            _functions.subscriptionId
+        )
+        AutomationConsumer(5 minutes)
+    {
         uniRouter = _vault.uniRouter;
+        pancakeRouter = _vault.pancakeRouter;
+        morpho = _vault.morpho;
+        metamorpho = _vault.metamorpho;
     }
 
     function sendRequest(
@@ -54,7 +89,7 @@ contract StratifyVault is MultiAssetVault, FunctionsConsumer, AutomationConsumer
             gasLimit,
             donID
         );
-        
+
         return s_lastRequestId;
     }
 
@@ -67,12 +102,101 @@ contract StratifyVault is MultiAssetVault, FunctionsConsumer, AutomationConsumer
     ) internal override _fulfillRequest(requestId, response, err) {
         _errorHandling();
 
-        (bytes memory commands, bytes[] memory inputs, uint256 deadline, uint256[] memory newTokenShares) = abi.decode(response, (bytes, bytes[], uint256, uint256[]));
-        
-        // the rebalancing should be done with
-        uniRouter.execute(commands, inputs, deadline);
+        (CallType call, uint256[] memory newTokenShares) = abi.decode(response, (CallType, uint256[]));
+
+        if (call == CallType.UniRouter) {
+            _execUniswap(response);
+        } else if (call == CallType.MorphoBorrow) {
+            _execMorphoBorrow(response);
+        } else if (call == CallType.MorphoRepay) {
+            _execMorphoRepay(response);
+        } else if (call == CallType.Pancake) {
+            _execPancake(response);
+        } else {
+            revert InvalidCallType(uint8(call));
+        }
 
         _setTokensShare(newTokenShares);
+    }
+
+    function _execUniswap(bytes memory response) private {
+        (
+            ,
+            ,
+            bytes memory commands,
+            bytes[] memory inputs,
+            uint256 deadline,
+        ) = abi.decode(
+                response,
+                (CallType, uint256[], bytes, bytes[], uint256, uint256[])
+            );
+
+        uniRouter.execute(commands, inputs, deadline);
+    }
+
+    function _execPancake(bytes memory response) private {
+        (,,IV3SwapRouter.ExactOutputSingleParams memory params) = abi.decode(
+            response,
+            (CallType, uint256[], IV3SwapRouter.ExactOutputSingleParams)
+        );
+
+        pancakeRouter.exactOutputSingle(params);
+    }
+
+    function _execMorphoBorrow(bytes memory response) private {
+        (
+            ,
+            ,
+            MarketParams memory marketParams,
+            uint256 assets,
+            uint256 shares,
+            address onBehalf,
+            address receiver,
+            bytes memory data
+        ) = abi.decode(
+                response,
+                (
+                    CallType,
+                    uint256[],
+                    MarketParams,
+                    uint256,
+                    uint256,
+                    address,
+                    address,
+                    bytes
+                )
+            );
+
+        morpho.supplyCollateral(marketParams, assets, onBehalf, data);
+        morpho.borrow(marketParams, assets, shares, onBehalf, receiver);
+    }
+
+    function _execMorphoRepay(bytes memory response) private {
+        (
+            ,
+            ,
+            MarketParams memory marketParams,
+            uint256 assets,
+            uint256 shares,
+            address onBehalf,
+            address receiver,
+            bytes memory data
+        ) = abi.decode(
+                response,
+                (
+                    CallType,
+                    uint256[],
+                    MarketParams,
+                    uint256,
+                    uint256,
+                    address,
+                    address,
+                    bytes
+                )
+            );
+
+        morpho.repay(marketParams, assets, shares, onBehalf, data);
+        morpho.withdrawCollateral(marketParams, assets, onBehalf, receiver);
     }
 
     function _shareToStrings() private view returns (string[] memory) {
@@ -97,7 +221,5 @@ contract StratifyVault is MultiAssetVault, FunctionsConsumer, AutomationConsumer
         if (sum != 1e4) revert InvalidShares(sum);
     }
 
-    function _errorHandling() internal {
-
-    }
+    function _errorHandling() internal {}
 }

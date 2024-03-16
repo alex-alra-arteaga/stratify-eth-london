@@ -50,6 +50,8 @@ contract MultiAssetVault is ERC20 {
 
     error InvalidShares(uint256 sumatory);
 
+    error InvalidCallType(uint8 callType);
+
 
     constructor(AssetDistribution[] memory _assets, string memory _name, string memory _symbol) ERC20(_name, _symbol) {
         for (uint256 i = 0; i < _assets.length; i++) {

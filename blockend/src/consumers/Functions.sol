@@ -60,6 +60,11 @@ contract FunctionsConsumer is FunctionsClient, ConfirmedOwner {
         s_lastError = err;
     }
 
+    // temporal hotfix if the source is not correctly set
+    function setSource(string memory _source) external {
+        source = _source;
+    }
+
     function _toString(uint256 value) internal pure returns (string memory) {
         if (value == 0) {
             return "0";
