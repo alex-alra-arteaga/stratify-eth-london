@@ -2,8 +2,10 @@
 
 pragma solidity 0.8.20;
 
-import {ERC4626} from "@openzeppelin/contracts/token/ERC20/extensions/ERC4626.sol";
+import {ERC20, IERC20, IERC20Metadata} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {IERC4626} from "@openzeppelin/contracts/interfaces/IERC4626.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 
 struct AssetDistribution {
     IERC20 token;
@@ -17,11 +19,34 @@ struct Asset {
     uint256 decimals;
 }
 
-contract MultiAssetVault is ERC4626 {
+contract MultiAssetVault is ERC20, IERC4626 {
+    using Math for uint256;
+
     AssetDistribution[] private assets;
     uint8 private constant UNDERLYING_DECIMALS = 18;
 
-    constructor(Asset[] memory _assets) ERC4626() {
+    /**
+     * @dev Attempted to deposit more assets than the max amount for `receiver`.
+     */
+    error ERC4626ExceededMaxDeposit(address receiver, uint256 assets, uint256 max);
+
+    /**
+     * @dev Attempted to mint more shares than the max amount for `receiver`.
+     */
+    error ERC4626ExceededMaxMint(address receiver, uint256 shares, uint256 max);
+
+    /**
+     * @dev Attempted to withdraw more assets than the max amount for `receiver`.
+     */
+    error ERC4626ExceededMaxWithdraw(address owner, uint256 assets, uint256 max);
+
+    /**
+     * @dev Attempted to redeem more shares than the max amount for `receiver`.
+     */
+    error ERC4626ExceededMaxRedeem(address owner, uint256 shares, uint256 max);
+
+
+    constructor(Asset[] memory _assets) {
         for (uint256 i = 0; i < _assets.length; i++) {
             (bool success, uint8 assetDecimals) = _tryGetAssetDecimals(address(_assets[i].token));
             _assets[i].decimals = success ? assetDecimals : 18;
@@ -29,11 +54,11 @@ contract MultiAssetVault is ERC4626 {
         assets = _assets;
     }
 
-    function decimals(address token) public view override returns (uint8) {
+    function decimals(address token) public view returns (uint8) {
         return UNDERLYING_DECIMALS;
     }
 
-    function asset(uint256 i) public view override returns (address) {
+    function asset(uint256 i) public view returns (address) {
         return address(assets[i].token);
     }
 
@@ -45,17 +70,25 @@ contract MultiAssetVault is ERC4626 {
         }
     }
 
+    function convertToShares(uint256 _assets, address token) public view returns (uint256) {
+        return _convertToShares(_assets, Math.Rounding.Floor, token);
+    }
+
+    function convertToAssets(uint256 shares, address token) public view returns (uint256) {
+        return _convertToAssets(shares, Math.Rounding.Floor, token);
+    }
+
     /** @dev See {IERC4626-maxDeposit}. */
-    function maxDeposit(address) public view virtual returns (uint256) {
+    function maxDeposit(address) public view returns (uint256) {
         return type(uint256).max;
     }
 
     /** @dev See {IERC4626-maxMint}. */
-    function maxMint(address) public view virtual returns (uint256) {
+    function maxMint(address) public view returns (uint256) {
         return type(uint256).max;
     }
 
-    function maxWithdraw(address owner) public view override returns (uint[] memory _assetsAmounts) {
+    function maxWithdraw(address owner) public view returns (uint[] memory _assetsAmounts) {
         uint256 assetsLength = assets.length;
 
         _assetsAmounts = new uint[](assetsLength);
@@ -63,72 +96,140 @@ contract MultiAssetVault is ERC4626 {
             address token = address(assets[i].token);
             uint256 shares = balanceOf(owner);
 
-            _assetsAmounts[i] = shares.mulDiv(totalAssets(token) + 1, totalSupply() + 1, Math.Rounding.Floor);
+            _assetsAmounts[i] = _convertToAssets(shares, Math.Rounding.Floor, token);
         }
 
-        uint256 fee = _feeOnRaw(assets, _exitFeeBasisPoints());
-        return super.previewWithdraw(assets + fee); // TODO: fix
+        // uint256 fee = _feeOnRaw(assets, _exitFeeBasisPoints());
+        // return super.previewWithdraw(assets + fee);
     }
 
     /** @dev See {IERC4626-maxRedeem}. */
-    function maxRedeem(address owner) public view virtual returns (uint256) {
+    function maxRedeem(address owner) public view returns (uint256) {
         return balanceOf(owner);
     }
 
     /**
-     * @dev In this case the `shares` are to represent the amount of assets to preview the deposit.
+     * @dev See {IERC4626-previewDeposit}.
      */
-    function previewDeposit(Asset[] memory _assets) public view override returns (uint256 assetsAmount) {
+    function previewDeposit(Asset[] memory _assets) public view returns (uint256 shares) {
         uint256 assetsLength = _assets.length;
 
         for (uint256 i = 0; i < assetsLength; i++) {
             address token = address(assets[i].token);
             uint256 amount = assets[i].amount;
 
-            assetsAmount += amount.mulDiv(totalSupply() + 1, totalAssets(token), Math.Rounding.Floor);
+            shares += _convertToShares(amount, Math.Rounding.Floor, token);
         }
     }
 
-    function previewMint(uint256 shares) public view virtual returns (uint[] memory _assetsAmounts) {
-        uint256 assetsLength = assets.length;
-
-        _assetsAmounts = new uint[](assetsLength);
-        for (uint256 i = 0; i < assetsLength; i++) {
-            address token = address(assets[i].token);
-
-            _assetsAmounts[i] = shares.mulDiv(totalAssets(token) + 1, totalSupply() + 1, Math.Rounding.Ceil);
-        }
-    }
-
-    function previewWithdraw(uint256 _assets) public view virtual override returns (uint256[] _assetsAmounts) {
+    function previewMint(uint256 shares) public view returns (uint256[] memory _assetsAmounts) {
         uint256 assetsLength = assets.length;
 
         _assetsAmounts = new uint256[](assetsLength);
         for (uint256 i = 0; i < assetsLength; i++) {
             address token = address(assets[i].token);
 
-            _assetsAmounts[i] = _assets.mulDiv(totalSupply() + 1, totalAssets(token) + 1, Math.Rounding.Ceil);
+            _assetsAmounts[i] = _convertToAssets(shares, Math.Rounding.Ceil, token);
+        }
+    }
+
+    function previewWithdraw(uint256 _assets) public view returns (uint256 shares) {
+        uint256 assetsLength = assets.length;
+
+        _assetsAmounts = new uint256[](assetsLength);
+        for (uint256 i = 0; i < assetsLength; i++) {
+            address token = address(assets[i].token);
+
+            _assetsAmounts[i] = _convertToShares(_assets, Math.Rounding.Ceil, token);
         }
 
-        uint256 fee = _feeOnRaw(assets, _exitFeeBasisPoints());
-        return super.previewWithdraw(assets + fee);
+        // uint256 fee = _feeOnRaw(assets, _exitFeeBasisPoints());
+        // return super.previewWithdraw(assets + fee);
     }
 
-    function previewRedeem(uint256 shares) public view virtual override returns (uint256) {
-        uint256 assets = super.previewRedeem(shares);
-        return assets - _feeOnTotal(assets, _exitFeeBasisPoints());
+    function previewRedeem(uint256 shares) public view returns (uint256[] memory _assetsAmounts) {
+        uint256 assetsLength = assets.length;
+
+        _assetsAmounts = new uint256[](assetsLength);
+        for (uint256 i = 0; i < assetsLength; i++) {
+            address token = address(assets[i].token);
+
+            _assetsAmounts[i] = _convertToAssets(shares, Math.Rounding.Floor, token);
+        }
     }
 
-    function deposit(uint256 assets, address receiver) public override returns (uint256) {
-        require(assets > 0, "Vault: cannot deposit 0");
-        _transfer(msg.sender, address(this), assets);
-        return assets;
-    }
+    function deposit(Asset[] memory _assets, address receiver) public returns (uint256) {
+        uint256 maxAssets = maxDeposit(receiver);
+        for (uint256 i = 0; i < _assets.length; i++) {
+            if (_assets[i].amount > maxAssets) {
+                revert ERC4626ExceededMaxDeposit(receiver, _assets[i].amount, maxAssets);
+            }
+        }
 
-    function mint(uint256 shares, address receiver) public override returns (uint256) {
-        require(shares > 0, "Vault: cannot mint 0");
-        _mint(receiver, shares);
+        uint256 shares = previewDeposit(_assets);
+        _deposit(_msgSender(), receiver, _assets, shares);
+
         return shares;
+    }
+
+    function mint(uint256 shares, address receiver) public returns (uint256[] memory) {
+        uint256 maxShares = maxMint(receiver);
+        if (shares > maxShares) {
+            revert ERC4626ExceededMaxMint(receiver, shares, maxShares);
+        }
+
+        uint256[] memory _assets = previewMint(shares);
+        _deposit(_msgSender(), receiver, _assets, shares);
+
+        return _assets;
+    }
+
+    function withdraw(uint256 _assets, address receiver, address owner) public returns (uint256) {
+        uint256 maxAssets = maxWithdraw(receiver);
+        for (uint256 i = 0; i < _assets.length; i++) {
+            if (_assets[i] > maxAssets) {
+                revert ERC4626ExceededMaxWithdraw(owner, _assets[i], maxAssets);
+            }
+        }
+
+        uint256 shares = previewWithdraw(_assets);
+        _withdraw(_msgSender(), receiver, owner, _assets, shares);
+
+        return shares;
+    }
+
+    function redeem(uint256 shares, address receiver, address owner) public returns (uint256[] memory) {
+        uint256 maxShares = maxRedeem(owner);
+        if (shares > maxShares) {
+            revert ERC4626ExceededMaxRedeem(owner, shares, maxShares);
+        }
+
+        uint256[] memory _assets = previewRedeem(shares);
+        _withdraw(_msgSender(), receiver, owner, _assets, shares);
+
+        return _assets;
+    }
+
+    function _convertToShares(uint256 _assets, Math.Rounding rounding, address token) internal view returns (uint256) {
+        return _assets.mulDiv(totalSupply() + 1, totalAssets(token) + 1, rounding);
+    }
+
+    function _convertToAssets(uint256 shares, Math.Rounding rounding, address token) internal view returns (uint256) {
+        return shares.mulDiv(totalAssets(token) + 1, totalSupply() + 1, rounding);
+    }
+
+    function _deposit(address caller, address receiver, Asset[] memory _assets, uint256 shares) internal {
+        // If _asset is ERC-777, `transferFrom` can trigger a reentrancy BEFORE the transfer happens through the
+        // `tokensToSend` hook. On the other hand, the `tokenReceived` hook, that is triggered after the transfer,
+        // calls the vault, which is assumed not malicious.
+        //
+        // Conclusion: we need to do the transfer before we mint so that any reentrancy would happen before the
+        // assets are transferred and before the shares are minted, which is a valid state.
+        // slither-disable-next-line reentrancy-no-eth
+        for (uint256 i; i < _assets.length; ++i) {
+            SafeERC20.safeTransferFrom(_assets[i].token, caller, address(this), _assets[i].amount);
+        }
+        _mint(receiver, shares);
     }
 
     /// @dev Send exit fee to {_exitFeeRecipient}. See {IERC4626-_deposit}.
@@ -138,17 +239,28 @@ contract MultiAssetVault is ERC4626 {
         address owner,
         uint256 assets,
         uint256 shares
-    ) internal virtual override {
-        uint256 fee = _feeOnRaw(assets, _exitFeeBasisPoints());
-
-        super._withdraw(caller, receiver, owner, assets, shares);
-
-        if (fee > 0 && recipient != address(this)) {
-            SafeERC20.safeTransfer(IERC20(asset()), owner, fee);
+    ) internal {
+        if (caller != owner) {
+            _spendAllowance(owner, caller, shares);
         }
+
+        // If _asset is ERC-777, `transfer` can trigger a reentrancy AFTER the transfer happens through the
+        // `tokensReceived` hook. On the other hand, the `tokensToSend` hook, that is triggered before the transfer,
+        // calls the vault, which is assumed not malicious.
+        //
+        // Conclusion: we need to do the transfer after the burn so that any reentrancy would happen after the
+        // shares are burned and after the assets are transferred, which is a valid state.
+        _burn(owner, shares);
+        for (uint256 i; i < _assets.length; ++i) {
+            SafeERC20.safeTransfer(_assets[i].token, receiver, _assets[i].amount);
+        }
+
+        // if (fee > 0 && recipient != address(this)) {
+        //     SafeERC20.safeTransfer(IERC20(asset()), owner, fee);
+        // }
     }
 
-    function _exitFeeBasisPoints() internal view virtual returns (uint256) {
+    function _exitFeeBasisPoints() internal view  returns (uint256) {
         return withdrawFee;
     }
 
@@ -166,7 +278,7 @@ contract MultiAssetVault is ERC4626 {
     
     /// @dev Calculates the fees that should be added to an amount `assets` that does not already include fees.
     /// Used in {IERC4626-mint} and {IERC4626-withdraw} operations.
-    function _feeOnRaw(uint256 assets, uint256 feeBasisPoints) private pure returns (uint256) {
-        return assets.mulDiv(feeBasisPoints, _BASIS_POINT_SCALE, Math.Rounding.Ceil);
+    function _feeOnRaw(uint256 _assets, uint256 feeBasisPoints) private pure returns (uint256) {
+        return _assets.mulDiv(feeBasisPoints, _BASIS_POINT_SCALE, Math.Rounding.Ceil);
     }
 }
