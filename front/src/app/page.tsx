@@ -1,11 +1,18 @@
-import Counter from "@/components/Counter";
+import Features from "@/components/Features";
+import Faq from "@/components/Faq";
+import Hero from "@/components/Hero";
+import Footer from "@/components/Footer";
+import Plans from "@/components/Plans";
+import AuthProvider from "@/utils/AuthProvider";
 
 export default function Home() {
   return (
-    <main>
-      <section className="flex items-center justify-center min-h-screen w-full">
-        <Counter />
-      </section>
-    </main>
+    <AuthProvider>
+      <Hero />
+      <Features />
+      <Plans />
+      <Faq />
+      <Footer />
+    </AuthProvider>
   );
 }
