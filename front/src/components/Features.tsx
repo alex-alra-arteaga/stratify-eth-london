@@ -15,12 +15,10 @@ export default function Features() {
               Features
             </span>
             <h2 className="mb-4 text-3xl font-bold text-dark sm:text-[40px]/[48px]">
-              What differentiates us?
+              What makes us unique?
             </h2>
             <p className="text-base text-body-color">
-              Speaking of features, here are some of the things that make our
-              product stand out. Dwell on these and see if they resonate with
-              your needs.
+              We are the first asset management product with no counterparty risk by design.
             </p>
           </div>
         </div>
@@ -31,22 +29,19 @@ export default function Features() {
             <FaChartLine className="text-2xl" />
           </div>
           <h3 className="mb-2 text-xl font-bold">
-            Marketing
+            Alignment
           </h3>
           <p className="text-gray-500">
-            Plan it, create it, launch it. Collaborate seamlessly with all the
-            organization and hit your marketing goals every month with our
-            marketing plan.
+            Strategies creators only make money if you do.
           </p>
         </div>
         <div>
           <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-md text-white bg-blue-300 lg:h-12 lg:w-12">
             <FaUniversity className="text-2xl" />
           </div>
-          <h3 className="mb-2 text-xl font-bold">Legal</h3>
+          <h3 className="mb-2 text-xl font-bold">Security</h3>
           <p className="text-gray-500">
-            Protect your organization, devices and stay compliant with our
-            structured workflows and custom permissions made for you.
+            Your funds are secured by code audited by top talent, we are MICA compliant and non-custodial.
           </p>
         </div>
         <div>
@@ -54,11 +49,10 @@ export default function Features() {
             <FaGear className="text-2xl" />
           </div>
           <h3 className="mb-2 text-xl font-bold">
-            Business Automation
+            Investment Automation
           </h3>
           <p className="text-gray-500">
-            Auto-assign tasks, send Slack messages, and much more. Now power up
-            with hundreds of new templates to help you get started.
+            Deposit or create your own strategies and let the system do the rest.
           </p>
         </div>
         <div>
@@ -69,8 +63,7 @@ export default function Features() {
             Finance
           </h3>
           <p className="text-gray-500">
-            Audit-proof software built for critical financial operations like
-            month-end close and quarterly budgeting.
+            Only riches could get you to launch your own hedge fund, now you can do it with a few clicks.
           </p>
         </div>
         <div>
@@ -78,11 +71,10 @@ export default function Features() {
             <FaBook className="text-2xl" />
           </div>
           <h3 className="mb-2 text-xl font-bold">
-            Enterprise Design
+            Academic Research
           </h3>
           <p className="text-gray-500">
-            Craft beautiful, delightful experiences for both marketing and
-            product with real cross-company collaboration.
+            We offer open data on multi-year immutable strategies and their performance.
           </p>
         </div>
         <div>
@@ -93,8 +85,7 @@ export default function Features() {
             Operations
           </h3>
           <p className="text-gray-500">
-            Keep your company’s lights on with customizable, iterative, and
-            structured workflows built for all efficient teams and individual.
+            Our SDK abstracts the complexity of blockchain and allows you to focus on your strategy.
           </p>
         </div>
       </div>

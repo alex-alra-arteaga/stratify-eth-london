@@ -294,14 +294,14 @@ export default function List() {
         <div className="flex flex-col w-full py-5 gap-5 h-full">
           <Strategy
             name="Fidelity Yield Fund"
-            symbol="TSK"
+            symbol="FYF"
             marketCap={145111}
             description="There's no best hedge against inflation. Generate yield while you don't spend your money."
             data={[100, 250, 200, 450, 800, 600, 725]}
           />
           <Strategy
             name="All Terrain"
-            symbol="SHIB"
+            symbol="AT"
             marketCap={129401}
             description="The SUVs portfolio. Hedge against inflation, interest rates and the geopolitical uncertainty."
             data={[100, 210, 100, 301, 230, 100, 325]}
@@ -309,7 +309,7 @@ export default function List() {
           />
           <Strategy
             name="BlackRock Real State"
-            symbol="ETHG"
+            symbol="BRS"
             marketCap={223401}
             description="Distributed real state across the globe. Diversify to reduce risk and increase profit."
             data={[600, 550, 500, 350, 500, 400, 720]}
@@ -317,7 +317,7 @@ export default function List() {
           />
           <Strategy
             name="Bitcoin DCA"
-            symbol="GTTM"
+            symbol="BDCA"
             marketCap={15441}
             description="Matching gold with Bitcoin. Keep your liquidity in a safe place while growing your wealth."
             data={[1000, 900, 600, 100, 150, 155, 315]}

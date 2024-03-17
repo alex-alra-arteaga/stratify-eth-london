@@ -18,8 +18,7 @@ const Accordion = () => {
                 Any Questions? Look Here
               </h2>
               <p className="text-base text-body-color">
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
+                There is no such thing as Stratify, so it's okay to have questions.
               </p>
             </div>
           </div>
