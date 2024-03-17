@@ -12,3 +12,4 @@ pancake/=lib/pancake-v3-contracts/projects/
 metamorpho/=lib/metamorpho/src/
 @morpho-blue/=lib/morpho-blue/src/
 morpho-blue/=lib/morpho-blue/src/
+@safe-tools/=lib/safe-tools/src/

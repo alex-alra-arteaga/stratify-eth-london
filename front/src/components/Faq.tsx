@@ -28,30 +28,30 @@ const Accordion = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4 lg:w-1/2">
             <AccordionItem
-              header="How long we deliver your first blog post?"
-              text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              header="Do I have to KYC?"
+              text="Unless you are a financial institution which desires to partner to offer our services to your clients, you do not need to KYC."
             />
             <AccordionItem
-              header="How long we deliver your first blog post?"
-              text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              header="How do you ensure no counterparty risk?"
+              text="We have no control over your funds. The assets are put at work in an audited smart contract, which is rebalanced by an immutable network of oracles."
             />
             <AccordionItem
-              header="How long we deliver your first blog post?"
-              text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              header="Do I need to have any particular asset to invest?"
+              text="No, we have a payment abstraction layer that allows you to enter any investment portfolio with any asset. We will take care of the conversion for you at 0 cost."
             />
           </div>
           <div className="w-full px-4 lg:w-1/2">
             <AccordionItem
-              header="How long we deliver your first blog post?"
-              text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              header="How is it even possible you can offer a more competitive UX than Fidelity, BlackRock and others?"
+              text="That's the magic of cutting middlemen, transparency and incentive alignment. We are not a financial institution, we are a protocol."
             />
             <AccordionItem
-              header="How long we deliver your first blog post?"
-              text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              header="Can I take part on your future success?"
+              text="We don't accept VC money, only public good grants. Our code is for the people and all the fees are used to keep the protocol running and improving."
             />
             <AccordionItem
-              header="How long we deliver your first blog post?"
-              text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              header="Is there any requirement to create a strategy?"
+              text="You must be over 18 years old and stake a certain amount of collateral to ensure no malicious behavior is introduced."
             />
           </div>
         </div>

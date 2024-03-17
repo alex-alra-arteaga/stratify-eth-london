@@ -63,7 +63,6 @@ contract MultiAssetVault is ERC20 {
         }
     }
 
-    
     /**
      * @dev Attempts to fetch the asset decimals. A return value of false indicates that the attempt failed in some way.
      */

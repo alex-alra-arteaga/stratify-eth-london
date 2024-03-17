@@ -287,40 +287,39 @@ export default function List() {
             </h2>
             <p className="text-base text-body-color">
               Choose the strategy that best suits your investment profile and
-              start investing in the best cryptocurrencies. All from the same
-              place.
+              start investing in Real State, Commodities, Securities and crypto assets.
             </p>
           </div>
         </div>
         <div className="flex flex-col w-full py-5 gap-5 h-full">
           <Strategy
-            name="Test Stake"
+            name="Fidelity Yield Fund"
             symbol="TSK"
             marketCap={145111}
-            description="The best strategy for you to invest in COIN. The aim of the strategy is to generate yields. What else would it be?"
+            description="There's no best hedge against inflation. Generate yield while you don't spend your money."
             data={[100, 250, 200, 450, 800, 600, 725]}
           />
           <Strategy
-            name="Shiba Doge"
+            name="All Terrain"
             symbol="SHIB"
             marketCap={129401}
-            description="The best strategy for you to invest in COIN. The aim of the strategy is to generate yields. What else would it be?"
+            description="The SUVs portfolio. Hedge against inflation, interest rates and the geopolitical uncertainty."
             data={[100, 210, 100, 301, 230, 100, 325]}
             disabled
           />
           <Strategy
-            name="Ethereum Global"
+            name="BlackRock Real State"
             symbol="ETHG"
             marketCap={223401}
-            description="A way to invest in Ethereum. The strategy aims to generate yields and increase the value of your investment."
+            description="Distributed real state across the globe. Diversify to reduce risk and increase profit."
             data={[600, 550, 500, 350, 500, 400, 720]}
             disabled
           />
           <Strategy
-            name="Gold to the moon"
+            name="Bitcoin DCA"
             symbol="GTTM"
             marketCap={15441}
-            description="Matching gold with Bitcoin. The main goal is to increase the profit generated and the value of the investment."
+            description="Matching gold with Bitcoin. Keep your liquidity in a safe place while growing your wealth."
             data={[1000, 900, 600, 100, 150, 155, 315]}
             disabled
           />
