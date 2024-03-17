@@ -105,6 +105,14 @@ Our platform not only allows you to hold the market's best yield tokens but also
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## UniSwap
+
+- **Tracks**: Open Track - Pool Operators, Public Goods, Research
+
+A core of our platform is the usage of the univeral rotuer in order to orchestrate swaps in a efficinet way. We are using the UniversalRouter for that, with integrations on chain for the final call [On-Chain fnc]("https://github.com/alex-alra-arteaga/stratify-eth-london/blob/7a4ac807a7d118fa39876c5dfd8e82edecdacf34/blockend/src/StratifyVault.sol#L122").
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### Address Deployment
 
 | Chain             | StratifyVault Address |
