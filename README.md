@@ -28,6 +28,39 @@ To participate in strategy creation on our platform, users are required to have 
 
 Integrating World ID is a crucial step towards our goal of creating a safer, more inclusive, and bot-resistant decentralized asset management platform. We believe that the future of DeFi must include robust solutions for identity verification, and World ID is poised to play a pivotal role in this evolution.
 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Dynamic Integration: Simplifying DeFi/Web3 Interactions
+
+At Stratify, we believe the future of DeFi and Web3 lies in seamlessly abstracted interactions, where users can engage with digital assets and contracts without needing to understand the underlying complexities. To this end, we've integrated Dynamic's embedded wallets, setting a new standard for user-friendly crypto interactions.
+
+### Driving Web3 Like a Car
+
+Imagine driving a car. You don't need to know the intricacies of how the engine works, the specifics of the transmission, or the details of the suspension system to get from point A to point B. You simply get in, start the car, and drive. This is the level of simplicity and abstraction we aim for in the world of DeFi and Web3.
+
+With Dynamic's embedded wallets, users can interact with our platform as easily as driving a car, without needing to understand the "mechanical" aspects of blockchain technology. This abstraction is crucial for bringing DeFi to the mainstream, aligning perfectly with Dynamic's value proposition of making crypto-native tools accessible to all.
+
+### Integration Highlights
+
+- **Embedded Wallets**: Seamlessly integrated within Stratify, offering a frictionless user experience.
+- **Account Abstraction**: Users manage their digital assets without needing to grasp the technicalities of wallet management.
+- **Access Control**: Enhanced security and user access management, ensuring a safe and trustable environment.
+- **Simplified Onboarding**: Quick and intuitive user onboarding, bridging the gap for those new to the crypto space.
+
+### Reference Implementation
+
+To see how we've implemented Dynamic's features within our platform, visit our GitHub:
+
+- [Embedded Wallet Integration]("")
+
+We're committed to enhancing our platform's usability and accessibility, making DeFi and Web3 as easy as driving a car. For more details on our integration and future updates, stay tuned!
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### Address Deployment
 
 | Chain             | StratifyVault Address |
