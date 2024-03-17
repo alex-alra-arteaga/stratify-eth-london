@@ -41,7 +41,7 @@ const Accordion = () => {
           </div>
           <div className="w-full px-4 lg:w-1/2">
             <AccordionItem
-              header="How is it even possible you can offer a more competitive UX than Fidelity, BlackRock and others?"
+              header="How are you more competitive than Fidelity, BlackRock & Co.?"
               text="That's the magic of cutting middlemen, transparency and incentive alignment. We are not a financial institution, we are a protocol."
             />
             <AccordionItem
