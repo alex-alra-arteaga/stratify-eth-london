@@ -159,11 +159,11 @@ We have pending an integration that withdraws the yield bearing tokens in advanc
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-## UniSwap
+## Uniswap
 
 - **Tracks**: Open Track - Pool Operators, Public Goods, Research
 
-A core of our platform is the usage of the univeral rotuer in order to orchestrate swaps in a efficinet way. We are using the UniversalRouter for that, with integrations on chain for the final call [On-Chain fnc]("https://github.com/alex-alra-arteaga/stratify-eth-london/blob/7a4ac807a7d118fa39876c5dfd8e82edecdacf34/blockend/src/StratifyVault.sol#L122").
+A core of our platform is the usage of the univeral rotuer in order to orchestrate swaps in a efficinet way. We are using the UniversalRouter for that, with integrations on chain for the final call [On-Chain fnc]("https://github.com/alex-alra-arteaga/stratify-eth-london/blob/7a4ac807a7d118fa39876c5dfd8e82edecdacf34/blockend/src/StratifyVault.sol#L122"). [Off-Chain fnc]("https://github.com/alex-alra-arteaga/stratify-eth-london/blob/e7e4c5fffc7514cca1172c8cac71a2ee610a9159/front/src/app/api/functions/route.ts#L50")
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
