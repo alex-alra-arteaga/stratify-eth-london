@@ -32,6 +32,8 @@ Integrating World ID is a crucial step towards our goal of creating a safer, mor
 
 ## Dynamic Integration: Simplifying DeFi/Web3 Interactions
 
+- **Tracks**: Best crypto enabled app,  Integration magic  &&  Best onboarding UX
+
 At Stratify, we believe the future of DeFi and Web3 lies in seamlessly abstracted interactions, where users can engage with digital assets and contracts without needing to understand the underlying complexities. To this end, we've integrated Dynamic's embedded wallets, setting a new standard for user-friendly crypto interactions.
 
 ### Driving Web3 Like a Car
@@ -54,6 +56,20 @@ To see how we've implemented Dynamic's features within our platform, visit our G
 - [Embedded Wallet Integration]("")
 
 We're committed to enhancing our platform's usability and accessibility, making DeFi and Web3 as easy as driving a car. For more details on our integration and future updates, stay tuned!
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Chainlink: Functions && Automation
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Arbitrum: Scaling DeFi
+
+- **Tracks**: Most Original && Qualifying Arbitrum Submissions
+
+### Centralized fair sequencing
+
+- The fact that the Arbitrum sequencer is centralized and fair in a way where the first transaction that comes in is the first transaction that gets processed it's curcial for the Stratify platform. In stratify being onchaih asset managers with public strategies, avoiding frontrunning is a must. We really really on the core desing of Arbitrum and we thing that along with the Dencun upgrade, with that lower fees fully decentralized defi can multiply by several times the TAUM of the industry.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
