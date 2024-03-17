@@ -1,5 +1,8 @@
 # Stratify - Passive Asset Management
 
+> [!NOTE]
+> The project is live! You can check the production build [here](https://stratify-rho.vercel.app/)
+
 Our product is about 2 main innovations:
 - The possibility of democratizing investment vehicles.
 - These investment vehicles are not the simple vehicles that we are all used to, but rather one that has no counterparty risk, is fully automatable with freedom of indicators and with very low operational costs.
