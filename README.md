@@ -93,7 +93,7 @@ We're committed to enhancing our platform's usability and accessibility, making 
 
 ## Optimize Your Yield with Our Strategy/Vault on Gnosis
 
-Forget holding pseudo fiat like EUR or GBP. We've developed a strategy/vault that embraces the three highest-yield tokens available on Gnosis, providing you with an innovative approach to maximize your assets' growth:
+Forget holding pseudo fiat like EURe or GBPe. We've developed a strategy/vault that embraces the three highest-yield tokens available on Gnosis, providing you with an innovative approach to maximize your assets' growth:
 
 - **Rocket Pool (rETH):** Access high yields with Rocket Pool's rETH on Gnosis at `0x2F0E755Efe6b58238A67DB420Ff3513Ec1fb31eF`.
 - **Savings DAI (sDAI):** Benefit from Savings DAI's consistent returns on Gnosis at `0xaf204776c7245bF4147c2612BF6e5972Ee483701`.
