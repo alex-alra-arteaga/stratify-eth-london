@@ -272,7 +272,7 @@ export default function List() {
     if (!user) {
       location.href = "/";
     }
-  }, []);
+  }, [user]);
 
   return (
     <section className="flex items-center justify-center w-full">
