@@ -87,6 +87,24 @@ We're committed to enhancing our platform's usability and accessibility, making 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## Gnosis
+
+- **Track**:  Yield Bearing Tokens Integration with Gnosis Pay
+
+## Optimize Your Yield with Our Strategy/Vault on Gnosis
+
+Forget holding pseudo fiat like EUR or GBP. We've developed a strategy/vault that embraces the three highest-yield tokens available on Gnosis, providing you with an innovative approach to maximize your assets' growth:
+
+- **Rocket Pool (rETH):** Access high yields with Rocket Pool's rETH on Gnosis at `0x2F0E755Efe6b58238A67DB420Ff3513Ec1fb31eF`.
+- **Savings DAI (sDAI):** Benefit from Savings DAI's consistent returns on Gnosis at `0xaf204776c7245bF4147c2612BF6e5972Ee483701`.
+- **Wrapped Liquid Staked Ether (wsETH):** Leverage the potential of wsETH on Gnosis at `0x6C76971f98945AE98dD7d4DFcA8711ebea946eA6`.
+
+### Insta-Swap and Maximize Yield
+
+Our platform not only allows you to hold the market's best yield tokens but also offers the flexibility to instantly swap them for any preferred token when using Gnosis Pay. The only catch? A delay module requires swap requests to be made 3 minutes before payment. This slight delay is a minor inconvenience when considering the ease of liquidity management—it's as simple as sending money via CashApp or Venmo. Now, you can have liquidity just in time for your transactions while maximizing the yield on your assets.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### Address Deployment
 
 | Chain             | StratifyVault Address |
