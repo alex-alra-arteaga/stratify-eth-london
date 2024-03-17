@@ -12,7 +12,9 @@ const datatype = "json";
 const apiUrl = `${baseUrl}?function=${functionType}&interval=${interval}&datatype=${datatype}&API_KEY=${API_KEY}`;
 
 try {
-    const response = await fetch(apiUrl);
+    const response = await Functions.makeHttpRequest({
+        url: apiUrl,
+    });
     const data = await response.json();
 
     const cpiDataArray = data.data;
@@ -33,12 +35,12 @@ try {
         console.log(
             "Significant increase in CPI detected, suggesting higher inflation. Consider increasing the gold allocation in the portfolio."
         );
-        return "btc_gold";
+        return Functions.encodeString("buy_btc");
     } else {
         console.log(
             "CPI change is within the acceptable range. No significant inflation detected, consider maintaining or increasing USDC allocation."
         );
-        return "hold_or_increase_usdc";
+        return Functions.encodeString("hold_or_increase_usdc");
     }
 } catch (error) {
     console.error("Error fetching CPI data:", error);
