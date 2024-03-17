@@ -18,7 +18,8 @@ const Accordion = () => {
                 Any Questions? Look Here
               </h2>
               <p className="text-base text-body-color">
-                There is no such thing as Stratify, so it's okay to have questions.
+                There is no such thing as Stratify, so it&apos;s okay to have
+                questions.
               </p>
             </div>
           </div>

@@ -142,7 +142,8 @@ function Strategy(
                         Disclaimer
                       </label>
                       <div className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 :bg-gray-600 :border-gray-500 :placeholder-gray-400 :text-white :focus:ring-primary-500 :focus:border-primary-500">
-                        By clicking the "Invest" button, you agree to our{" "}
+                        By clicking the &ldquo;Invest&rdquo; button, you agree
+                        to our{" "}
                         <span className="text-blue-500">
                           terms and conditions
                         </span>{" "}
@@ -287,7 +288,8 @@ export default function List() {
             </h2>
             <p className="text-base text-body-color">
               Choose the strategy that best suits your investment profile and
-              start investing in Real State, Commodities, Securities and crypto assets.
+              start investing in Real State, Commodities, Securities and crypto
+              assets.
             </p>
           </div>
         </div>

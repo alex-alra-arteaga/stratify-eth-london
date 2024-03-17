@@ -8,7 +8,7 @@ import { Image } from "@react-three/drei";
 import { easing } from "maath";
 import "@/utils/Geometry";
 
-export default function () {
+export default function Component() {
   return (
     <div className="overflow-y-hidden w-full h-full">
       <Canvas camera={{ position: [0, 0, 100], fov: 15 }}>
@@ -86,6 +86,7 @@ function Card({ url, ...props }: {
   });
   return (
     <Image
+      alt="img"
       ref={ref}
       url={url}
       transparent
