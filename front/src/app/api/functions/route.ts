@@ -51,8 +51,6 @@ export async function POST(request : any) {
     // handle the request
     const res : Body = await request.json();
     console.log("res body", res);
-
-
     const chainId = process.env.CHAIN_ID || 11155111; // localhost
     const privateKey = process.env.PRIVATE_KEY; // the one that will have access to call that function or anyone on the localchain
     if (!privateKey) throw new Error("PRIVATE_KEY not set");

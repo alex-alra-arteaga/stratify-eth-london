@@ -34,7 +34,7 @@ export default function Hero() {
                 {data
                   ? (
                     <a
-                      className="w-52 rounded-md bg-gradient-to-r from-green-500 via-blue-600 to-indigo-400 inline-block p-5 text-white text-xl text-center border-2 border-blue-600 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-green-400 hover:to-indigo-300"
+                      className="w-52 rounded-md bg-gradient-to-r from-green-500 via-blue-600 to-indigo-400 inline-block p-5 text-white text-xl text-center border-blue-600 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-green-400 hover:to-indigo-300"
                       href="/app"
                     >
                       Launch App
@@ -42,13 +42,13 @@ export default function Hero() {
                   )
                   : (
                     <button
-                      className="w-52 rounded-md bg-gradient-to-r from-green-500 via-blue-600 to-indigo-400 inline-block p-5 text-white text-xl text-center border-2 border-blue-600 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-green-400 hover:to-indigo-300"
+                      className="w-52 rounded-md bg-gradient-to-r from-green-500 via-blue-600 to-indigo-400 inline-block p-5 text-white text-xl text-center border-blue-600 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:via-green-400 hover:to-indigo-300"
                       onClick={() => setShowAuthFlow(true)}
                     >
                       Start Now
                     </button>
                   )}
-                <button className="w-52 rounded-md bg-white border-2 border-blue-600 p-5 text-blue-600 transition-all duration-300 hover:bg-blue-100 hover:border-blue-700 hover:text-blue-700 text-xl">
+                <button className="w-52 rounded-md bg-indigo-400 p-5 text-white transition-all duration-300 hover:bg-blue-400 text-xl">
                   More info
                 </button>
               </div>
