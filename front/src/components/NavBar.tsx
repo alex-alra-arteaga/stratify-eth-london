@@ -20,7 +20,7 @@ export default function NavBar() {
         <nav className="w-full absolute">
           <div className="hidden lg:flex w-full f-f-p justify-between items-center py-6 relative">
             <div className="w-2/3">
-              <h1 className="font-5xl font-bold">Stratify</h1>
+              <a href="/" className="font-5xl font-bold">Stratify</a>
             </div>
             <div className="md:w-1/2 xl:w-1/3">
               <div className="flex gap-[25px] w-full items-center text-gray-600">
@@ -36,6 +36,11 @@ export default function NavBar() {
                 <div className="border-b-4 border-transparent pb-1">
                   <a href="#">FAQ</a>
                 </div>
+                {data && (
+                  <div className="border-b-4 border-transparent pb-1">
+                    <a href="/upload">Create</a>
+                  </div>
+                )}
                 <div className="border-b-4 border-transparent pb-1">
                   {data
                     ? (
