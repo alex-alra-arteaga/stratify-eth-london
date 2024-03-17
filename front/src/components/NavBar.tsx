@@ -47,7 +47,7 @@ export default function NavBar() {
                       <div className="flex flex-row items-center justify-center gap-5 h-10">
                         <div className="w-22 h-auto py-2 px-3 bg-blue-600 text-white rounded-lg">
                           <span>
-                            {data.email}
+                            {data.email!.split("@")[0]}
                           </span>
                         </div>
                         <div
@@ -57,7 +57,7 @@ export default function NavBar() {
                           }}
                           className="p-3 h-full rounded-md hover:cursor-pointer hover:bg-gray-300 flex items-center justify-center"
                         >
-                          <span className="mr-4">LogOut</span>
+                          <span className="mr-4">Exit</span>
                           <MdLogout className="text-white" />
                         </div>
                       </div>

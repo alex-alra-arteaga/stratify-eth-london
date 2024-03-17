@@ -5,7 +5,7 @@ import {
     ERC20_ABI,
     VAULT_ABI,
     M_VAULT_ADDRESS,
-} from "@/constants/contracts_abi";
+} from "../../../constants/contracts_abi";
 import {
     FeeAmount,
     nearestUsableTick,
