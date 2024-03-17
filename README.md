@@ -61,6 +61,8 @@ We're committed to enhancing our platform's usability and accessibility, making 
 
 ## Chainlink: Functions && Automation
 
+- **Tracks**:  Connect the world with Chainlink
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Arbitrum: Scaling DeFi
@@ -73,7 +75,15 @@ We're committed to enhancing our platform's usability and accessibility, making 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## Base
 
+- **Tracks**: Build an Onchain Product
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Circle
+
+- **Tracks**:  Best Application for Crypto Capital Markets , Best Application for Dollar Access && Best Applications for Emerging Use Cases with Circle Products
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
