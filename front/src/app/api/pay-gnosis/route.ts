@@ -95,7 +95,7 @@ export async function POST(request: any) {
     await executeNextTx(M_VAULT_ADDRESS, value, unsignedTx, 0);
 
     return NextResponse.json(
-        { reciever: res.recipient, assets: res.Assets, owner: res.owner},
+        { reciever: res.recipient, assets: res.Assets, owner: res.owner },
         { status: 200 }
     );
 }
