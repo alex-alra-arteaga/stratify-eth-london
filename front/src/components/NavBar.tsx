@@ -57,7 +57,7 @@ export default function NavBar() {
                           }}
                           className="p-3 h-full rounded-md hover:cursor-pointer hover:bg-gray-300 flex items-center justify-center"
                         >
-                          <span className="mr-4">LogOut</span>
+                          <span className="mr-4">Exit</span>
                           <MdLogout className="text-white" />
                         </div>
                       </div>
