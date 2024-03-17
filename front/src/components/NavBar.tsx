@@ -25,20 +25,20 @@ export default function NavBar() {
             <div className="md:w-1/2 xl:w-1/3">
               <div className="flex gap-[25px] w-full items-center text-gray-600">
                 <div className="border-b-4 border-transparent pb-1">
-                  <a href="#">Home</a>
+                  <a href="#home">Home</a>
                 </div>
                 <div className="border-b-4 border-transparent pb-1">
-                  <a href="#">Features</a>
+                  <a href="#features">Features</a>
                 </div>
                 <div className="border-b-4 border-transparent pb-1">
-                  <a href="#">Plans</a>
+                  <a href="#plans">Plans</a>
                 </div>
                 <div className="border-b-4 border-transparent pb-1">
-                  <a href="#">FAQ</a>
+                  <a href="#faq">FAQ</a>
                 </div>
                 {data && (
                   <div className="border-b-4 border-transparent pb-1">
-                    <a href="/upload">Create</a>
+                    <a href="/create">Create</a>
                   </div>
                 )}
                 <div className="border-b-4 border-transparent pb-1">
@@ -89,28 +89,23 @@ export default function NavBar() {
                   className=" p-2 border-r bg-white absolute rounded top-0 left-0 right-0 shadow mt-16 md:mt-16"
                 >
                   <div className="flex cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                    <a href="#">
+                    <a href="#home">
                       <span className="ml-2 font-bold">Home</span>
                     </a>
                   </div>
                   <div className="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none  justify-center">
-                    <a href="#">
+                    <a href="#features">
                       <span className="ml-2 font-bold">Features</span>
                     </a>
                   </div>
                   <div className="flex cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700  items-center focus:text-indigo-700 focus:outline-none">
-                    <a href="#">
+                    <a href="#plans">
                       <span className="ml-2 font-bold">Plans</span>
                     </a>
                   </div>
                   <div className="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none  justify-center">
-                    <a href="#">
-                      <span className="ml-2 font-bold">Blog</span>
-                    </a>
-                  </div>
-                  <div className="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal pt-2 pb-4 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none  justify-center">
-                    <a href="#">
-                      <span className="ml-2 font-bold">About Us</span>
+                    <a href="#faq">
+                      <span className="ml-2 font-bold">FAQ</span>
                     </a>
                   </div>
                 </ul>
