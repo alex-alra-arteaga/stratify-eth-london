@@ -10,9 +10,8 @@ import {
 } from "viem";
 import getProof from "viem/actions";
 import { mainnet, sepolia, gnosis } from "viem/chains";
-import { erc20Abi } from "@/constants/contracts_abi";
 import { NextResponse } from "next/server";
-import { VAULT_ABI, M_VAULT_ADDRESS, safeAbi } from "@/constants/contracts_abi";
+import { VAULT_ABI, M_VAULT_ADDRESS, safeAbi, erc20Abi} from "../../../constants/contracts_abi";
 
 type Body = {
     Assets: number[];
