@@ -55,9 +55,11 @@ contract MultiAssetVault is ERC20 {
 
     constructor(AssetDistribution[] memory _assets, string memory _name, string memory _symbol) ERC20(_name, _symbol) {
         for (uint256 i = 0; i < _assets.length; i++) {
-            (bool success, uint8 assetDecimals) = _tryGetAssetDecimals(_assets[i].token);
+            //(bool success, uint8 assetDecimals) = _tryGetAssetDecimals(_assets[i].token);
+            bool success = false;
+            uint8 assetDecimals = 18;
             _assets[i].decimals = success ? assetDecimals : 18;
-            assets[i] = _assets[i];
+            assets.push(_assets[i]);
         }
     }
 

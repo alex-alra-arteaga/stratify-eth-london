@@ -29,7 +29,7 @@ struct FunctionsConf {
 
 enum CallType {
     UniRouter, // Uniswap
-    MorphoBorrow,
+    MorphoBorrow, // Morpho
     MorphoRepay,
     Pancake // Pancake
 }
