@@ -13,8 +13,9 @@ contract BaseDeployer is Script {
         ArbitrumSepolia,
         BaseTestnet,
         CeloAlfajores,
-        GnosisChiado,
-        Chiliz
+        Gnosis,
+        Chiliz,
+        GnosisChiado
     }
 
     enum Cycle {
@@ -78,7 +79,7 @@ contract BaseDeployer is Script {
         forks[Chains.ArbitrumSepolia] = vm.envString("ARBITRUM_SEPOLIA_RPC_URL");
         forks[Chains.BaseTestnet] = vm.envString("BASE_TESTNET_RPC_URL");
         forks[Chains.CeloAlfajores] = vm.envString("CELO_ALFAJORES_RPC_URL");
-        forks[Chains.GnosisChiado] = vm.envString("GNOSIS_CHIADO_RPC_URL");
+        forks[Chains.Gnosis] = vm.envString("GNOSIS_RPC_URL");
         forks[Chains.Chiliz] = vm.envString("CHILIZ_RPC_URL");
 
         // Mainnet

@@ -14,7 +14,10 @@ export default function Hero() {
   }, [user]);
 
   return (
-    <section className="flex items-center justify-center min-h-screen w-full">
+    <section
+      className="flex items-center justify-center min-h-screen w-full"
+      id="home"
+    >
       <div className="lg:px-6 xl:px-0">
         <NavBar />
         <div className="mx-auto container relative z-0 px-4 xl:px-0">

@@ -1,9 +1,3 @@
-[submodule "blockend/lib/pancake-v3-contracts"]
-	path = blockend/lib/pancake-v3-contracts
-	url = https://github.com/pancakeswap/pancake-v3-contracts
-[submodule "blockend/lib/metamorpho"]
-	path = blockend/lib/metamorpho
-	url = https://github.com/morpho-org/metamorpho
-[submodule "blockend/lib/morpho-blue"]
-	path = blockend/lib/morpho-blue
-	url = https://github.com/morpho-org/morpho-blue
+[submodule "blockend/lib/safe-tools"]
+	path = blockend/lib/safe-tools
+	url = https://github.com/colinnielsen/safe-tools

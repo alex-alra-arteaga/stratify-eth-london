@@ -3,7 +3,7 @@ import { PiProhibitBold } from "react-icons/pi";
 
 export default function Plans() {
   return (
-    <div className="bg-white :bg-gray-900 mt-10">
+    <div className="bg-white :bg-gray-900 mt-10" id="plans">
       <div className="container px-6 pt-8 mx-auto">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">

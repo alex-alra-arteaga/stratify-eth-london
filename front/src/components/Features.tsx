@@ -4,7 +4,10 @@ import { FaMoneyBillAlt, FaUniversity } from "react-icons/fa";
 
 export default function Features() {
   return (
-    <div className="max-w-7xl mx-auto font-[sans-serif] text-[#333] mt-20">
+    <div
+      className="max-w-7xl mx-auto font-[sans-serif] text-[#333] mt-20"
+      id="features"
+    >
       <div className="flex items-center justify-center">
         <div className="w-full px-4 flex items-center justify-center">
           <div className="mb-[60px] max-w-[520px] text-center lg:mb-20">
